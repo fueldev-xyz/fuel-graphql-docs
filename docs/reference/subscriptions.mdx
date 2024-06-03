@@ -1,28 +1,28 @@
 ---
-title: Subscriptions
-category: Reference
+title: 订阅
+category: 参考资料
 ---
 
-# Subscriptions
+# 订阅
 
 ## `statusChange`
 
-Returns a stream of [`TransactionStatus!`](/docs/reference/unions/#transactionstatus) updates for the given transaction id if the current status is `[TransactionStatus::Submitted]`.
+返回给定交易ID的[`TransactionStatus!`](/docs/reference/unions/#transactionstatus)更新流，如果当前状态是`[TransactionStatus::Submitted]`。
 
-This stream will wait forever so it's advised to use within a timeout. It is possible for the stream to miss an update if it is polled slower then the updates arrive. In such a case the stream will close without a status. If this occurs the stream can simply be restarted to return the latest status.
+这个流会永远等待，所以建议在超时内使用。如果流的轮询速度低于更新到达的速度，则可能会错过更新。在这种情况下，流将关闭而没有状态。如果发生这种情况，可以简单地重新启动流以返回最新状态。
 
-**args:**
+**参数:**
 
 `id`: [`TransactionId!`](/docs/reference/scalars/#transactionid)
 
-The id of the transaction to stream status updates for.
+要流式传输状态更新的交易ID。
 
 ## `submitAndAwait`
 
-Submits a transaction to the `TxPool` and await returns the [`TransactionStatus!`](/docs/reference/unions/#transactionstatus).
+将交易提交到`TxPool`并等待返回[`TransactionStatus!`](/docs/reference/unions/#transactionstatus)。
 
-**args:**
+**参数:**
 
 `tx`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The transaction hex string.
+交易的十六进制字符串。

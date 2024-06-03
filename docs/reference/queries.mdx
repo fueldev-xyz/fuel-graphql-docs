@@ -1,242 +1,242 @@
 ---
-title: Queries
-category: Reference
+title: 查询
+category: 参考资料
 ---
 
-# Queries
+# 查询
 
 ## `balance`
 
-Returns the [`Balance!`](/docs/reference/objects/#balance) of a specific address for a given asset id.
+返回指定地址的特定资产 ID 的 [`Balance!`](/docs/reference/objects/#balance)。
 
-**args:**
+**参数:**
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-The owner address.
+所有者地址。
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id.
+资产 ID。
 
 ## `balances`
 
-Returns a [`BalanceConnection!`](/docs/reference/objects/#balance) for an array of balances for each asset owned by a given address.
+返回给定地址拥有的每个资产的余额数组的 [`BalanceConnection!`](/docs/reference/objects/#balance)。
 
-**args:**
+**参数:**
 
 `filter`: [`BalanceFilterInput!`](/docs/reference/objects/#balancefilterinput)
 
-A filter to specify the wallet owner address.
+指定钱包所有者地址的过滤器。
 
 ## `block`
 
-Returns information about a certain [`Block`](/docs/reference/objects/#block). Accepts either the block id or block height as an argument.
+返回有关某个 [`Block`](/docs/reference/objects/#block) 的信息。接受块 ID 或块高度作为参数。
 
-**args:**
+**参数:**
 
 `id`: [`BlockId`](/docs/reference/scalars/#blockid)
 
-The block id.
+块 ID。
 
 `height`: [`U64`](/docs/reference/scalars/#u64)
 
-The block height.
+块高度。
 
 ## `blocks`
 
-Returns a [`BlockConnection!`](/docs/reference/objects/#block) for an array of all blocks produced.
+返回所有生成的块的数组的 [`BlockConnection!`](/docs/reference/objects/#block)。
 
 ## `chain`
 
-Returns [`ChainInfo!`](/docs/reference/objects/#chaininfo) about the target Fuel network used for the API.
+返回有关用于 API 的目标 Fuel 网络的 [`ChainInfo!`](/docs/reference/objects/#chaininfo)。
 
 ## `coin`
 
-Returns details about a specific [`Coin`](/docs/reference/objects/#coin).
+返回有关特定 [`Coin`](/docs/reference/objects/#coin) 的详细信息。
 
-**args:**
+**参数:**
 
 `utxoId`: [`UtxoId!`](/docs/reference/scalars/#utxoid)
 
-A unique 32 byte identifier for the UTXO.
+UTXO 的唯一 32 字节标识符。
 
 ## `coins`
 
-Returns a [`CoinConnection!`](/docs/reference/objects/#coin) for an array of coins based on a given owner and/or asset id
+返回基于给定所有者和/或资产 ID 的硬币数组的 [`CoinConnection!`](/docs/reference/objects/#coin)。
 
-**args:**
+**参数:**
 
 `filter`: [`CoinFilterInput!`](/docs/reference/objects/#coinfilterinput)
 
-A filter with the owner address and optionally the asset id.
+包含所有者地址和可选资产 ID 的过滤器。
 
 ## `coinsToSpend`
 
-Returns an array of spendable [`[[CoinType!]!]!`](/docs/reference/unions/#cointype) per asset.
+返回每个资产的可支配 [`[[CoinType!]!]!`](/docs/reference/unions/#cointype) 数组。
 
-**args:**
+**参数:**
 
 `owner`: [`Address`](/docs/reference/scalars/#address)
 
-The owner address of the coins.
+硬币的所有者地址。
 
 `queryPerAsset`: [`[SpendQueryElementInput!]!`](/docs/reference/objects/#spendqueryelementinput)
 
-The list of requested asset resources. Several entries with the same asset id are not allowed.
+请求的资产资源列表。不允许同一个资产 ID 有多个条目。
 
 `excludedIds`: [`ExcludeInput`](/docs/reference/objects/#excludeinput)
 
-The resources to exclude.
+要排除的资源。
 
 ## `contract`
 
-Returns the [`Contract`](/docs/reference/objects/#contract) information for a given contract id.
+返回给定合约 ID 的 [`Contract`](/docs/reference/objects/#contract) 信息。
 
-**args:**
+**参数:**
 
 `id`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The contract id of the requested contract.
+请求合约的合约 ID。
 
 ## `contractBalance`
 
-Returns the [`ContractBalance!`](/docs/reference/objects/#contractbalance) for a given contract and asset id.
+返回给定合约和资产 ID 的 [`ContractBalance!`](/docs/reference/objects/#contractbalance)。
 
-**args:**
+**参数:**
 
 `contract`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The contract that owns the balance.
+拥有余额的合约。
 
 `asset`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id for the balance.
+资产 ID。
 
 ## `contractBalances`
 
-Returns a [`ContractBalanceConnection!`](/docs/reference/objects/#contractbalance) for an array of balances for all assets owned by a given contract
+返回给定合约拥有的所有资产的余额数组的 [`ContractBalanceConnection!`](/docs/reference/objects/#contractbalance)。
 
-**args:**
+**参数:**
 
 `filter`: [`ContractBalanceFilterInput!`](/docs/reference/objects/#contractbalancefilterinput)
 
-A filter for the contract balances.
+合约余额的过滤器。
 
 ## `estimateGasPrice`
 
-Estimates the most expensive the gas price over a given block horizon, and returns [`EstimateGasPrice!`](/docs/reference/objects/#estimategasprice).
+估计在给定区块范围内的最贵的 gas 价格，并返回 [`EstimateGasPrice!`](/docs/reference/objects/#estimategasprice)。
 
-**args:**
+**参数:**
 
 `blockHorizon`: [`U32!`](/docs/reference/scalars/#u32)
 
-The block horizon defines how many blocks in the future you are doing an estimate for.
+区块范围定义了你在未来估算的区块数。
 
 ## `estimatePredicates`
 
-Estimate the predicate gas and returns a [`Transaction!`](/docs/reference/objects/#transaction).
+估计断言 gas 并返回 [`Transaction!`](/docs/reference/objects/#transaction)。
 
-**args:**
+**参数:**
 
 `tx`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The transaction hex string.
+交易的十六进制字符串。
 
 ## `health`
 
-Returns `true` if the API is running or `false` if the API is down.
+如果 API 正在运行则返回 `true`，如果 API 停止则返回 `false`。
 
 ## `latestGasPrice`
 
-Returns the [`LatestGasPrice!`](/docs/reference/objects/#latestgasprice) of the latest block.
+返回最新区块的 [`LatestGasPrice!`](/docs/reference/objects/#latestgasprice)。
 
 ## `message`
 
-Returns the [`Message`](/docs/reference/objects/#message) for a given message nonce.
+返回给定消息 nonce 的 [`Message`](/docs/reference/objects/#message)。
 
-**args:**
+**参数:**
 
 `nonce`: [`Nonce!`](/docs/reference/scalars/#nonce)
 
-The message nonce.
+消息 nonce。
 
 ## `messageProof`
 
-Returns the [`MessageProof`](/docs/reference/objects/#messageproof) for a given message id or transaction.
+返回给定消息 ID 或交易的 [`MessageProof`](/docs/reference/objects/#messageproof)。
 
-**args:**
+**参数:**
 
 `transactionId`: [`TransactionId!`](/docs/reference/scalars/#transactionid)
 
-The transaction id for the message.
+消息的交易 ID。
 
 `nonce`: [`Nonce`](/docs/reference/scalars/#nonce)
 
-The message nonce.
+消息 nonce。
 
 `commitBlockId`: [`BlockId`](/docs/reference/scalars/#blockid)
 
-The block id.
+块 ID。
 
 `commitBlockHeight`: [`U32`](/docs/reference/scalars/#u32)
 
-The block height.
+块高度。
 
 ## `messages`
 
-Returns a [`MessageConnection!`](/docs/reference/objects/#message) for an array of messages for a given owner.
+返回给定所有者的消息数组的 [`MessageConnection!`](/docs/reference/objects/#message)。
 
-**args:**
+**参数:**
 
 `owner`: [`Address`](/docs/reference/scalars/#address)
 
-The owner address of the messages.
+消息的所有者地址。
 
 ## `messageStatus`
 
-Returns the [`MessageStatus`](/docs/reference/objects/#messagestatus) for a given message [`Nonce`](/docs/reference/scalars/#nonce).
+返回给定消息 [`Nonce`](/docs/reference/scalars/#nonce) 的 [`MessageStatus`](/docs/reference/objects/#messagestatus)。
 
-**args:**
+**参数:**
 
 `nonce`: [`Nonce`](/docs/reference/scalars/#nonce)
 
-The nonce of the message.
+消息的 nonce。
 
 ## `nodeInfo`
 
-Returns [`NodeInfo!`](/docs/reference/objects/#nodeinfo) about the current node.
+返回有关当前节点的 [`NodeInfo!`](/docs/reference/objects/#nodeinfo)。
 
 ## `relayedTransactionStatus`
 
-Returns [`RelayedTransactionStatus`](/docs/reference/unions/#relayedtransactionstatus) details for a given relayed transaction id.
+返回给定中继交易 ID 的 [`RelayedTransactionStatus`](/docs/reference/unions/#relayedtransactionstatus) 详细信息。
 
-**args:**
+**参数:**
 
 `id`: [`RelayedTransactionId!`](/docs/reference/scalars/#relayedtransactionid)
 
-The ID for the relayed transaction.
+中继交易的 ID。
 
 ## `transaction`
 
-Returns [`Transaction`](/docs/reference/objects/#transaction) details for a given transaction id.
+返回给定交易 ID 的 [`Transaction`](/docs/reference/objects/#transaction) 详细信息。
 
-**args:**
+**参数:**
 
 `id`: [`TransactionId!`](/docs/reference/scalars/#transactionid)
 
-The ID for the transaction.
+交易的 ID。
 
 ## `transactions`
 
-Returns a [`TransactionConnection!`](/docs/reference/objects/#transaction) for an array of all transactions.
+返回所有交易数组的 [`TransactionConnection!`](/docs/reference/objects/#transaction)。
 
 ## `transactionsByOwner`
 
-Returns a [`TransactionConnection!`](/docs/reference/objects/#transaction) for an array of all transactions from a given address.
+返回给定地址的所有交易数组的 [`TransactionConnection!`](/docs/reference/objects/#transaction)。
 
-**args:**
+**参数:**
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-The owner address of the transactions.
+交易的所有者地址。

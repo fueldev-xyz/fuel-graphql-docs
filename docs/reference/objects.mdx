@@ -1,1884 +1,1889 @@
 ---
-title: Objects
-category: Reference
+title: 对象
+category: 参考资料
 ---
-
-# Objects
+# 对象
 
 ## `Balance`
 
-The balance of a particular asset for a wallet address.
+钱包地址的特定资产余额。
 
-**fields:**
+**字段:**
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-An EOA account represented by 32 bytes.
+一个由32字节表示的EOA账户。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of the selected asset id as an unsigned 64 bit number.
+所选资产ID的金额，作为无符号64位数字。
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-A 32 byte representation of the asset.
+资产的32字节表示。
 
 ## `BalanceFilterInput`
 
-The filter input type used to filter the `balances` query.
+用于过滤 `balances` 查询的过滤输入类型。
 
-**fields:**
+**字段:**
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-The owner address of the balances.
+余额的所有者地址。
 
 ## `Block`
 
-Information about a block in the network.
+网络中一个区块的信息。
 
-**fields:**
+**字段:**
 
 `id`: [`BlockId!`](/docs/reference/scalars/#blockid)
 
-A unique identifier for the block.
+区块的唯一标识符。
 
 `height`: [`U32!`](/docs/reference/scalars/#u32)
 
-The height of the block.
+区块的高度。
 
 `header`: [`Header!`](#header)
 
-Metadata about a block.
+区块的元数据。
 
 `consensus`: [`Consensus!`](/docs/reference/unions/#consensus)
 
-The type of consensus used.
+使用的共识类型。
 
 `transactions`: [`[Transaction!]!`](#transaction)
 
-An array of transactions included in the block.
+包含在区块中的交易数组。
 
 ## `Breakpoint`
 
-A breakpoint during debugging.
-Defined as a tuple of a contract ID and relative `pc` offset inside it.
+调试期间的断点。
+定义为一个合约ID和其中的相对 `pc` 偏移的元组。
 
-**fields:**
+**字段:**
 
 `contract`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The contract address.
+合约地址。
 
 `pc`: [`U64!`](/docs/reference/scalars/#u64)
 
-The value of the program counter register `$pc`, which is the memory address of the current instruction.
+程序计数器寄存器 `$pc` 的值，即当前指令的内存地址。
 
 ## `ChainInfo`
 
-Information about the base chain. At a very high level `chainInfo` helps you understand what Fuel chain you're connected to and the different parameters of this chain.
+基础链的信息。在非常高的层面上，`chainInfo` 可以帮助您了解您连接的 Fuel 链以及此链的不同参数。
 
-**fields:**
+**字段:**
 
 `name`: `String!`
 
-The human-readable string name of the chain. i.e. `Upgradable Testnet`.
+链的人类可读字符串名称。例如 `可升级测试网`。
 
 `latestBlock`: [`Block!`](#block)
 
-The most recently created block.
+最近创建的区块。
 
 `daHeight`: [`U64!`](/docs/reference/scalars/#u64)
 
-The height of the base chain via relayer (i.e. Ethereum or DA)
+通过中继器（例如以太坊或 DA）的基础链的高度。
 
 `consensusParameters`: [`ConsensusParameters!`](#consensusparameters)
 
-The consensus parameters used to validate blocks.
+用于验证区块的共识参数。
 
 `gasCosts`: [`GasCosts!`](#gascosts)
 
-The gas cost of each opcode.
+每个操作码的燃气成本。
 
 ## `ChangeOutput`
 
-A transaction output that changes the unspent coins in a UTXO.
+改变UTXO中未花费的硬币的交易输出。
 
-**fields:**
+**字段:**
 
 `to`: [`Address!`](/docs/reference/scalars/#address)
 
-The recipient address of the coins.
+硬币的接收者地址。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of coins.
+输出中硬币的数量。
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id for the coins.
+输出硬币的资产ID。
 
 ## `Coin`
 
-Information about a coin.
+有关硬币的信息。
 
-**fields:**
+**字段:**
 
 `utxoId`: [`UtxoId!`](/docs/reference/scalars/#utxoid)
 
-A unique 32 byte identifier for a UTXO.
+UTXO的唯一32字节标识符。
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-The owner address of the coins.
+硬币的所有者地址。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of coins.
+硬币的数量。
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id of the coin.
+硬币的资产ID。
 
 `blockCreated`: [`U32!`](/docs/reference/scalars/#u32)
 
-The block when the coins were created.
+创建硬币的区块。
 
 `txCreatedIdx`: [`U64!`](/docs/reference/scalars/#u64)
 
-The index of the transaction that created this coin.
+创建此硬币的交易的索引。
 
 ## `CoinFilterInput`
 
-The filter input type for the `coins` query.
+用于 `coins` 查询的过滤输入类型。
 
-**fields:**
+**字段:**
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-The owner of the coins.
+硬币的所有者。
 
 `assetId`: [`AssetId`](/docs/reference/scalars/#assetid)
 
-The asset id of the coins.
+硬币的资产ID。
 
 ## `CoinOutput`
 
-A type representing a coin output.
+代表硬币输出的类型。
 
-**fields:**
+**字段:**
 
 `to`: [`Address!`](/docs/reference/scalars/#address)
 
-The receiver address of the output coins.
+输出硬币的接收地址。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of coins in the output.
+输出中硬币的数量。
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id for the output coins.
+输出硬币的资产ID。
 
 ## `ConsensusParameters`
 
-The consensus parameters used for validating blocks.
+用于验证区块的共识参数。
 
-**fields:**
+**字段:**
 
 `version`: [`ConsensusParametersVersion!`](/docs/reference/unions/#consensusparametersversion)
 
-The version of the consensus parameters.
+共识参数的版本。
 
 `txParams`: [`TxParameters!`](#txparameters)
 
-The allowed parameters of transactions.
-
 `predicateParams`: [`PredicateParameters!`](#predicateparameters)
 
-The allowed parameters of predicates.
+谓词的允许参数。
 
 `scriptParams`: [`ScriptParameters!`](#scriptparameters)
 
-The allowed parameters of scripts.
+脚本的允许参数。
 
 `contractParams`: [`ContractParameters!`](#contractparameters)
 
-The allowed parameters of contracts.
+合约的允许参数。
 
 `feeParams`: [`FeeParameters!`](#feeparameters)
 
-The allowed parameters of fees.
+手续费的允许参数。
 
 `baseAssetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id of the "base" asset used for gas fees.
+用于燃料费的“基础”资产的资产ID。
 
 `blockGasLimit`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum amount of gas spend allowed in a block.
+区块中允许的最大燃气花费量。
 
 `chainId`: [`U64!`](/docs/reference/scalars/#u64)
 
-A unique identifier for the chain.
+链的唯一标识符。
 
 `gasCosts`: [`GasCosts!`](#gascosts)
 
-The gas cost of each opcode.
+每个操作码的燃气成本。
 
 `privilegedAddress`: [`Address!`](/docs/reference/scalars/#address)
 
-The address used to authorize network upgrades via the `Upgrade` transaction.
+通过 `Upgrade` 交易授权网络升级的地址。
 
 ## `ConsensusParametersPurpose`
 
-Details about the consensus parameters that are being upgraded.
+关于正在升级的共识参数的详细信息。
 
-**fields:**
+**字段:**
 
 `witnessIndex`: [`U16!`](/docs/reference/scalars/#u16)
 
-The index of the witness in the `witnesses` field that contains the serialized consensus parameters. For an upgrade to consensus parameters, the upgraded parameters are stored as a witness in the transaction.
+在 `witnesses` 字段中包含序列化共识参数的见证的索引。对于共识参数的升级，升级后的参数存储为交易中的见证。
 
 `checksum`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The hash of the serialized consensus parameters.
-Since the serialized consensus parameters live inside the transaction witnesses (which is malleable data), any party can override them. The `checksum` is used to verify that the data was not modified or tampered with.
+序列化共识参数的哈希值。由于序列化的共识参数位于交易见证中（这是可塑性数据），任何一方都可以覆盖它们。`checksum` 用于验证数据是否未被修改或篡改。
 
 ## `Contract`
 
-An object representing a deployed contract.
+表示已部署合约的对象。
 
-**fields:**
+**字段:**
 
 `id`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The contract address.
+合约地址。
 
 `bytecode`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The contract bytecode.
+合约字节码。
 
 `salt`: [`Salt!`](/docs/reference/scalars/#salt)
 
-A unique identifier for the contract.
+合约的唯一标识符。
 
 ## `ContractBalance`
 
-An object representing the balance of a deployed contract for a certain asset.
+表示某种资产的已部署合约的余额的对象。
 
-**fields:**
+**字段:**
 
 `contract`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The contract address.
+合约地址。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The contract balance for the given asset.
+给定资产的合约余额。
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id for the coins.
+硬币的资产ID。
 
 ## `ContractBalanceFilterInput`
 
-The filter input type for the `contractBalances` query.
+用于 `contractBalances` 查询的过滤输入类型。
 
-**fields:**
+**字段:**
 
 `contract`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The contract id that the query will return balances for.
+查询将返回其余额的合约ID。
 
 ## `ContractCreated`
 
-The output type from deploying a contract.
+部署合约的输出类型。
 
-**fields:**
+**字段:**
 
 `contract`: [`Contract!`](#contract)
 
-The contract that was created.
+已创建的合约。
 
 `stateRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The initial state root of contract.
+合约的初始状态根。
 
 ## `ContractOutput`
 
-The output type from a transaction that changed the state of a contract.
+改变合约状态的交易的输出类型。
 
-**fields:**
+**字段:**
 
 `inputIndex`: `Int!`
 
-The index of the input.
+输入的索引。
 
 `balanceRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The root of amount of coins owned by contract after transaction execution.
+交易执行后合约拥有的硬币数量的根。
 
 `stateRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The state root of contract after transaction execution.
+交易执行后的合约状态根。
 
 ## `ContractParameters`
 
-Contract-specific consensus parameters.
+特定于合约的共识参数。
 
-**fields:**
+**字段:**
 
 `version`: [`ContractParametersVersion!`](/docs/reference/unions/#contractparametersversion)
 
-The version of the contract-specific consensus parameters.
+合约特定共识参数的版本。
 
 `contractMaxSize`: [`U64!`](/docs/reference/scalars/#u64)
 
-Maximum size of a contract in bytes.
+合约的最大大小（以字节为单位）。
 
 `maxStorageSlots`: [`U64!`](/docs/reference/scalars/#u64)
 
-Maximum number of storage slots.
+存储槽的最大数量。
+ 
 
 ## `DryRunTransactionExecutionStatus`
 
-Details about the status of a transaction dry run.
+事务模拟执行的状态详情。
 
-**fields:**
+**字段:**
 
 `id`: [`TransactionId!`](/docs/reference/scalars/#transactionid)
 
-The transaction ID.
+事务ID。
 
 `status`: [`DryRunTransactionStatus!`](/docs/reference/unions/#dryruntransactionstatus)
 
-The status of the transaction dry run.
+事务模拟执行的状态。
 
 `receipts`: [`[Receipt!]!`](#receipt)
 
-The receipts for the transaction dry run.
+事务模拟执行的收据。
 
 ## `DryRunFailureStatus`
 
-The status details of a failed transaction dry run.
+失败的事务模拟执行的状态详情。
 
-**fields:**
+**字段:**
 
 `programState`: [`ProgramState`](#programstate)
 
-The state of the program execution.
+程序执行状态。
 
 `reason`: `String!`
 
-The reason why the transaction dry run failed.
+事务模拟执行失败的原因。
 
 `receipts`: [`[Receipt!]!`](#receipt)
 
-The transaction dry run receipts.
+事务模拟执行的收据。
 
 `totalGas`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total amount of gas used.
+使用的总燃气量。
 
 `totalFee`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total fee for the transaction.
+交易的总费用。
 
 ## `DryRunSuccessStatus`
 
-The status details of a successful transaction dry run.
+成功的事务模拟执行的状态详情。
 
-**fields:**
+**字段:**
 
 `programState`: [`ProgramState`](#programstate)
 
-The state of the program execution.
+程序执行状态。
 
 `receipts`: [`[Receipt!]!`](#receipt)
 
-The transaction dry run receipts.
+事务模拟执行的收据。
 
 `totalGas`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total amount of gas used.
+使用的总燃气量。
 
 `totalFee`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total fee for the transaction.
+交易的总费用。
 
 ## `EstimateGasPrice`
 
-The estimated gas price for a transaction.
+交易的估计燃气价格。
 
-**fields:**
+**字段:**
 
 `gasPrice`: [`U64!`](/docs/reference/scalars/#u64)
 
 ## `ExcludeInput`
 
-The input type for the `resourcesToSpend` query that defines what UTXOs and messages to exclude.
+`resourcesToSpend` 查询的输入类型，定义要排除的UTXOs和消息。
 
-**fields:**
+**字段:**
 
 `utxos`: [`[UtxoId!]!`](/docs/reference/scalars/#utxoid)
 
-An array of UTXO IDs to exclude.
+要排除的UTXO ID数组。
 
 `messages`: [`[Nonce!]!`](/docs/reference/scalars/#nonce)
 
-An array of message IDs to exclude.
+要排除的消息ID数组。
 
 ## `FailureStatus`
 
-The status type of a transaction that has failed.
+失败的事务的状态类型。
 
-**fields:**
+**字段:**
 
 `transactionId`: [`TransactionId!`](/docs/reference/scalars/#transactionid)
 
-A unique transaction id.
+唯一的事务ID。
 
 `block`: [`Block!`](#block)
 
-The block number for the failed transaction.
+失败事务所在的区块号。
 
 `time`: [`Tai64Timestamp!`](/docs/reference/scalars/#tai64timestamp)
 
-The time the transaction failed.
+事务失败的时间。
 
 `reason`: `String!`
 
-The reason why the transaction failed.
+事务失败的原因。
 
 `programState`: [`ProgramState`](#programstate)
 
-The state of the program execution.
+程序执行状态。
 
 `receipts`: [`[Receipt!]!`](#receipt)
 
-The receipts for the transaction.
+事务的收据。
 
 `totalGas`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total amount of gas used.
+使用的总燃气量。
 
 `totalFee`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total fee for the transaction.
+交易的总费用。
+
 
 ## `FeeParameters`
 
-The consensus parameters for fees.
+费用的共识参数。
 
-**fields:**
+**字段:**
 
 `version`: [`FeeParametersVersion!`](/docs/reference/unions/#feeparametersversion)
 
-The version of the consensus parameters.
+共识参数的版本。
 
 `gasPriceFactor`: [`U64!`](/docs/reference/scalars/#u64)
 
-The dynamic adjustment of gas costs.
+燃气成本的动态调整。
 
 `gasPerByte`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost per byte.
+每字节的燃气成本。
 
 ## `GasCosts`
 
-The breakdown of the gas costs of each opcode.
+每个操作码的燃气成本细分。
 
-**fields:**
+**字段:**
 
 `version`: [`GasCostsVersion!`](/docs/reference/unions/#gascostsversion)
 
-The version of the gas-specific consensus parameters.
+燃气特定共识参数的版本。
 
 `add`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$add` ALU opcode.
+使用 `$add` ALU 操作码的燃气成本。
 
 `addi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$addi` ALU opcode.
+使用 `$addi` ALU 操作码的燃气成本。
 
 `aloc`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$aloc` memory opcode.
+使用 `$aloc` 内存操作码的燃气成本。
 
 `and`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$and` ALU opcode.
+使用 `$and` ALU 操作码的燃气成本。
 
 `andi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$andi` ALU opcode.
+使用 `$andi` ALU 操作码的燃气成本。
 
 `bal`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$bal` contract opcode.
+使用 `$bal` 合约操作码的燃气成本。
 
 `bhei`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$bhei` contract opcode.
+使用 `$bhei` 合约操作码的燃气成本。
 
 `bhsh`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$bhsh` contract opcode.
+使用 `$bhsh` 合约操作码的燃气成本。
 
 `burn`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$burn` contract opcode.
+使用 `$burn` 合约操作码的燃气成本。
 
 `cb`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$cb` contract opcode.
+使用 `$cb` 合约操作码的燃气成本。
 
 `cfei`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$cfei` memory opcode.
+使用 `$cfei` 内存操作码的燃气成本。
 
 `cfsi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$cfsi` memory opcode.
+使用 `$cfsi` 内存操作码的燃气成本。
 
 `div`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$div` ALU opcode.
+使用 `$div` ALU 操作码的燃气成本。
 
 `divi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$divi` ALU opcode.
+使用 `$divi` ALU 操作码的燃气成本。
 
 `ecr1`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$ecr1` cryptographic opcode.
+使用 `$ecr1` 密码操作码的燃气成本。
 
 `eck1`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$eck1` cryptographic opcode.
+使用 `$eck1` 密码操作码的燃气成本。
 
 `ed19`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$ed19` cryptographic opcode.
+使用 `$ed19` 密码操作码的燃气成本。
 
 `eq`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$eq` ALU opcode.
+使用 `$eq` ALU 操作码的燃气成本。
 
 `exp`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$exp` ALU opcode.
+使用 `$exp` ALU 操作码的燃气成本。
 
 `expi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$expi` ALU opcode.
+使用 `$expi` ALU 操作码的燃气成本。
 
 `flag`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$flag` opcode.
+使用 `$flag` 操作码的燃气成本。
 
 `gm`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$gm` opcode.
+使用 `$gm` 操作码的燃气成本。
 
 `gt`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$gt` opcode.
+使用 `$gt` 操作码的燃气成本。
 
 `gtf`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$gtf` ALU opcode.
+使用 `$gtf` ALU 操作码的燃气成本。
 
 `ji`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$ji` control flow opcode.
+使用 `$ji` 控制流操作码的燃气成本。
 
 `jmp`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jmp` control flow opcode.
+使用 `$jmp` 控制流操作码的燃气成本。
+
 
 `jne`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jne` control flow opcode.
+使用 `$jne` 控制流操作码的燃气成本。
 
 `jnei`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jnei` control flow opcode.
+使用 `$jnei` 控制流操作码的燃气成本。
 
 `jnzi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jnzi` control flow opcode.
+使用 `$jnzi` 控制流操作码的燃气成本。
 
 `jmpf`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jmpf` control flow opcode.
+使用 `$jmpf` 控制流操作码的燃气成本。
 
 `jmpb`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jmpb` control flow opcode.
+使用 `$jmpb` 控制流操作码的燃气成本。
 
 `jnzf`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jnzf` control flow opcode.
+使用 `$jnzf` 控制流操作码的燃气成本。
 
 `jnzb`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jnzb` control flow opcode.
+使用 `$jnzb` 控制流操作码的燃气成本。
 
 `jnef`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jnef` control flow opcode.
+使用 `$jnef` 控制流操作码的燃气成本。
 
 `jneb`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$jneb` control flow opcode.
+使用 `$jneb` 控制流操作码的燃气成本。
 
 `lb`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$lb` memory opcode.
+使用 `$lb` 内存操作码的燃气成本。
 
 `log`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$log` contract opcode.
+使用 `$log` 合约操作码的燃气成本。
 
 `lt`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$lt` ALU opcode.
+使用 `$lt` ALU 操作码的燃气成本。
 
 `lw`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$lw` memory opcode.
+使用 `$lw` 内存操作码的燃气成本。
 
 `mint`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$mint` contract opcode.
+使用 `$mint` 合约操作码的燃气成本。
 
 `mlog`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$mlog` ALU opcode.
+使用 `$mlog` ALU 操作码的燃气成本。
 
 `modOp`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$modOp` opcode.
+使用 `$modOp` 操作码的燃气成本。
 
 `modi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$modi` ALU opcode.
+使用 `$modi` ALU 操作码的燃气成本。
 
 `moveOp`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$moveOp` ALU opcode.
+使用 `$moveOp` ALU 操作码的燃气成本。
 
 `movi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$movi` ALU opcode.
+使用 `$movi` ALU 操作码的燃气成本。
 
 `mroo`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$mroo` ALU opcode.
+使用 `$mroo` ALU 操作码的燃气成本。
 
 `mul`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$mul` ALU opcode.
+使用 `$mul` ALU 操作码的燃气成本。
 
 `muli`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$muli` ALU opcode.
+使用 `$muli` ALU 操作码的燃气成本。
 
 `mldv`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$mldv` ALU opcode.
+使用 `$mldv` ALU 操作码的燃气成本。
 
 `noop`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$noop` ALU opcode.
+使用 `$noop` ALU 操作码的燃气成本。
 
 `not`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$not` ALU opcode.
+使用 `$not` ALU 操作码的燃气成本。
 
 `or`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$or` ALU opcode.
+使用 `$or` ALU 操作码的燃气成本。
 
 `ori`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$ori` ALU opcode.
+使用 `$ori` ALU 操作码的燃气成本。
 
 `poph`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$poph` opcode.
+使用 `$poph` 操作码的燃气成本。
 
 `popl`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$popl` opcode.
+使用 `$popl` 操作码的燃气成本。
 
 `pshh`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$pshh` opcode.
+使用 `$pshh` 操作码的燃气成本。
 
 `pshl`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$pshl` opcode.
+使用 `$pshl` 操作码的燃气成本。
 
 `ret`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$ret` opcode.
+使用 `$ret` 操作码的燃气成本。
 
 `rvrt`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$rvrt` contract opcode.
+使用 `$rvrt` 合约操作码的燃气成本。
 
 `sb`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$sb` memory opcode.
+使用 `$sb` 内存操作码的燃气成本。
 
 `sll`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$sll` ALU opcode.
+使用 `$sll` ALU 操作码的燃气成本。
 
 `slli`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$slli` ALU opcode.
+使用 `$slli` ALU 操作码的燃气成本。
 
 `srl`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$srl` ALU opcode.
+使用 `$srl` ALU 操作码的燃气成本。
 
 `srli`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$srli` ALU opcode.
+使用 `$srli` ALU 操作码的燃气成本。
 
 `srw`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$srw` contract opcode.
+使用 `$srw` 合约操作码的燃气成本。
 
 `sub`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$sub` ALU opcode.
+使用 `$sub` ALU 操作码的燃气成本。
 
 `subi`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$subi` ALU opcode.
+使用 `$subi` ALU 操作码的燃气成本。
 
 `sw`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$sw` memory opcode.
+使用 `$sw` 内存操作码的燃气成本。
 
 `sww`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$sww` contract opcode.
+使用 `$sww` 合约操作码的燃气成本。
 
 `time`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$time` contract opcode.
+使用 `$time` 合约操作码的燃气成本。
 
 `tr`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$tr` contract opcode.
+使用 `$tr` 合约操作码的燃气成本。
 
 `tro`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$tro` contract opcode.
+使用 `$tro` 合约操作码的燃气成本。
 
 `wdcm`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wdcm` ALU opcode.
+使用 `$wdcm` ALU 操作码的燃气成本。
 
 `wqcm`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wqcm` ALU opcode.
+使用 `$wqcm` ALU 操作码的燃气成本。
 
 `wdop`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wdop` ALU opcode.
+使用 `$wdop` ALU 操作码的燃气成本。
 
 `wqop`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wqop` ALU opcode.
+使用 `$wqop` ALU 操作码的燃气成本。
 
 `wdml`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wdml` ALU opcode.
+使用 `$wdml` ALU 操作码的燃气成本。
 
 `wqml`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wqml` ALU opcode.
+使用 `$wqml` ALU 操作码的燃气成本。
 
 `wddv`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wddv` ALU opcode.
+使用 `$wddv` ALU 操作码的燃气成本。
 
 `wqdv`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wqdv` ALU opcode.
+使用 `$wqdv` ALU 操作码的燃气成本。
 
 `wdmd`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wdmd` ALU opcode.
+使用 `$wdmd` ALU 操作码的燃气成本。
 
 `wqmd`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wqmd` ALU opcode.
+使用 `$wqmd` ALU 操作码的燃气成本。
 
 `wdam`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wdam` ALU opcode.
+使用 `$wdam` ALU 操作码的燃气成本。
 
 `wqam`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wqam` ALU opcode.
+使用 `$wqam` ALU 操作码的燃气成本。
 
 `wdmm`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wdmm` ALU opcode.
+使用 `$wdmm` ALU 操作码的燃气成本。
 
 `wqmm`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$wqmm` ALU opcode.
+使用 `$wqmm` ALU 操作码的燃气成本。
 
 `xor`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$xor` ALU opcode.
+使用 `$xor` ALU 操作码的燃气成本。
 
 `xori`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of using the `$xori` ALU opcode.
+使用 `$xori` ALU 操作码的燃气成本。
 
 `call`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$call` contract opcode.
+使用 `$call` 合约操作码的 `dependent` 燃气成本。
 
 `ccp`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$ccp` contract opcode.
+使用 `$ccp` 合约操作码的 `dependent` 燃气成本。
 
 `croo`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$croo` contract opcode.
+使用 `$croo` 合约操作码的 `dependent` 燃气成本。
 
 `csiz`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$csiz` contract opcode.
+使用 `$csiz` 合约操作码的 `dependent` 燃气成本。
 
 `k256`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$k256` cryptographic opcode.
+使用 `$k256` 加密操作码的 `dependent` 燃气成本。
 
 `ldc`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$ldc` contract opcode.
+使用 `$ldc` 合约操作码的 `dependent` 燃气成本。
 
 `logd`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$logd` contract opcode.
+使用 `$logd` 合约操作码的 `dependent` 燃气成本。
 
 `mcl`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$mcl` memory opcode.
+使用 `$mcl` 内存操作码的 `dependent` 燃气成本。
+
+
 
 `mcli`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$mcli` memory opcode.
+使用 `$mcli` 内存操作码的 `dependent` 燃气成本。
 
 `mcp`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$mcp` memory opcode.
+使用 `$mcp` 内存操作码的 `dependent` 燃气成本。
 
 `mcpi`: [`DependentCost`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$mcpi` memory opcode.
+使用 `$mcpi` 内存操作码的 `dependent` 燃气成本。
 
 `meq`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$meq` memory opcode.
+使用 `$meq` 内存操作码的 `dependent` 燃气成本。
 
 `retd`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$retd` contract opcode.
+使用 `$retd` 合约操作码的 `dependent` 燃气成本。
 
 `s256`: [`DependentCost`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$mcpi` cryptographic opcode.
+使用 `$mcpi` 加密操作码的 `dependent` 燃气成本。
 
 `scwq`: [`DependentCost`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$scwq` cryptographic opcode.
+使用 `$scwq` 加密操作码的 `dependent` 燃气成本。
 
 `smo`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$smo` contract opcode.
+使用 `$smo` 合约操作码的 `dependent` 燃气成本。
 
 `srwq`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$srwq` contract opcode.
+使用 `$srwq` 合约操作码的 `dependent` 燃气成本。
 
 `swwq`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of using the `$swwq` contract opcode.
+使用 `$swwq` 合约操作码的 `dependent` 燃气成本。
 
 `contractRoot`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost calculating the `contractRoot`.
+计算 `contractRoot` 的 `dependent` 燃气成本。
 
 `stateRoot`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost calculating the `stateRoot`.
+计算 `stateRoot` 的 `dependent` 燃气成本。
 
 `vmInitialization`: [`DependentCost!`](/docs/reference/unions/#dependentcost)
 
-The `dependent` gas cost of the `vmInitialization`.
+`vmInitialization` 的 `dependent` 燃气成本。
 
 `newStoragePerByte`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas cost of storage per byte.
+每字节存储的燃气成本。
 
 ## `Genesis`
 
-The genesis consensus type.
+创世区块的共识类型。
 
-**fields:**
+**字段:**
 
 `chainConfigHash`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The chain configuration hash. The chain configuration defines what consensus type to use, what settlement layer to use, and the rules of block validity.
+链配置哈希。链配置定义了使用的共识类型、结算层和块有效性规则。
 
 `coinsRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The binary Merkle tree root of all genesis coins.
+所有创世硬币的二进制 Merkle 树根。
 
 `contractsRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The binary Merkle tree root of state, balances, and the contracts code hash of each contract.
+所有合约状态、余额和每个合约的合约代码哈希的二进制 Merkle 树根。
 
 `messagesRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The binary merkle tree root of all genesis messages.
+所有创世消息的二进制 Merkle 树根。
 
 `transactionsRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The binary Merkle tree root of all previous transactions.
+所有之前交易的二进制 Merkle 树根。
 
 ## `HeavyOperation`
 
-The operation dependent on the size of its inputs, and the time required per unit of input exceeding that of a single no-op operation
+依赖于其输入大小的操作，以及每个输入单位所需的时间超过单个无操作操作的时间
 
-**fields:**
+**字段:**
 
 `base`: [`U64!`](/docs/reference/scalars/#u64)
 
-The minimum gas that this operation can cost
+此操作可能的最小燃气成本
 
 `gasPerUnit`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas is required to process a single unit
+处理单个单位所需的燃气
 
 ## `Header`
 
-The header contains metadata about a certain block.
+头包含有关特定块的元数据。
 
-**fields:**
+**字段:**
 
 `id`: [`BlockId!`](/docs/reference/scalars/#blockid)
 
-The current block id.
+当前区块 ID。
 
 `daHeight`: [`U64!`](/docs/reference/scalars/#u64)
 
-The block height for the data availability layer up to which (inclusive) input messages are processed.
+数据可用性层的区块高度，其中（包括）处理输入消息。
 
 `consensusParametersVersion`: [`U32!`](/docs/reference/scalars/#u32)
 
-The version of the consensus parameters.
+共识参数的版本。
 
 `stateTransitionBytecodeVersion`: [`U32!`](/docs/reference/scalars/#u32)
 
-The version of the state transition bytecode.
+状态转换字节码的版本。
+
 
 `transactionsCount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The number of transactions in the block.
+区块中的交易数量。
 
 `messageReceiptCount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The number of receipt messages in the block.
+区块中收据消息的数量。
 
 `transactionsRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The merkle root of the transactions in the block.
+区块中交易的 Merkle 根。
 
 `messageOutboxRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The Merkle root of the outgoing messages back to the data availability (DA) layer from Fuel, where the inputs are the IDs (`MessageId`) of the messages. The IDs are produced by executing transactions and collecting IDs from the receipts of the `Message` outputs.
+从 Fuel 返回到数据可用性（DA）层的外发消息的 Merkle 根，其中输入是消息的 ID（`MessageId`）。这些 ID 是通过执行交易并从“消息”输出的收据中收集 ID 而产生的。
 
 `eventInboxRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The Merkle root of the incoming events from the data availability (DA) layer to Fuel, where the tree inputs are the hashes of these events.
+从数据可用性（DA）层到 Fuel 的传入事件的 Merkle 根，其中树输入是这些事件的哈希值。
 
 `height`: [`U32!`](/docs/reference/scalars/#u32)
 
-The block height.
+区块高度。
 
 `prevRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The merkle root of all previous consensus header hashes (not including this block).
+所有先前的共识头哈希的 Merkle 根（不包括此区块）。
 
 `time`: [`Tai64Timestamp!`](/docs/reference/scalars/#tai64timestamp)
 
-The timestamp for the block.
+区块的时间戳。
 
 `applicationHash`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The hash of the serialized application header for this block.
+此区块的序列化应用头的哈希值。
 
 ## `InputCoin`
 
-Information about a coin input.
+有关硬币输入的信息。
 
-**fields:**
+**字段:**
 
 `utxoId`: [`UtxoId!`](/docs/reference/scalars/#utxoid)
 
-A unique 32 byte identifier for the UTXO.
+UTXO 的唯一 32 字节标识符。
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-The owning address or predicate root.
+拥有地址或谓词根。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of coins.
+硬币数量。
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset ID of the coins.
+硬币的资产 ID。
 
 `txPointer`: [`TxPointer!`](/docs/reference/scalars/#txpointer)
 
-A pointer to the transaction whose output is being spent.
+指向正在花费输出的交易的指针。
 
 `witnessIndex`: `Int!`
 
-The index of the witness that authorizes spending the coin.
+授权花费硬币的见证人的索引。
 
 `predicateGasUsed`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of gas used in the predicate transaction.
+谓词交易中使用的燃气量。
 
 `predicate`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The predicate bytecode.
+谓词字节码。
 
 `predicateData`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The predicate input parameters.
+谓词输入参数。
 
 ## `InputContract`
 
-Information about a contract input.
+有关合约输入的信息。
 
-**fields:**
+**字段:**
 
 `utxoId`: [`UtxoId!`](/docs/reference/scalars/#utxoid)
 
-A unique 32 byte identifier for the UTXO.
+UTXO 的唯一 32 字节标识符。
 
 `balanceRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The root of amount of coins owned by contract before transaction execution.
+交易执行前合约拥有的硬币数量的根。
 
 `stateRoot`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The state root of contract before transaction execution.
+交易执行前的合约状态根。
 
 `txPointer`: [`TxPointer!`](/docs/reference/scalars/#txpointer)
 
-A pointer to the TX whose output is being spent.
+指向正在花费输出的 TX 的指针。
+
 
 `contractId`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The input contract's ID.
+输入合约的 ID。
 
 ## `InputMessage`
 
-Information about a message input.
+有关消息输入的信息。
 
-**fields:**
+**字段:**
 
 `sender`: [`Address!`](/docs/reference/scalars/#address)
 
-The sender address of the message.
+消息的发送者地址。
 
 `recipient`: [`Address!`](/docs/reference/scalars/#address)
 
-The recipient address of the message.
+消息的接收者地址。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount sent in the message.
+消息中发送的金额。
 
 `nonce`: [`Nonce!`](/docs/reference/scalars/#nonce)
 
-A nonce value for the message input, which is determined by the sending system and is published at the time the message is sent.
+消息输入的 nonce 值，由发送系统确定，并在发送消息时发布。
 
 `witnessIndex`: `Int!`
 
-The index of witness that authorizes spending the coin.
+授权花费硬币的见证人的索引。
 
 `predicateGasUsed`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of gas used in the predicate transaction.
+谓词交易中使用的燃气量。
 
 `data`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The message data.
+消息数据。
 
 `predicate`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The predicate bytecode.
+谓词字节码。
 
 `predicateData`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The predicate input parameters.
+谓词输入参数。
 
 ## `LatestGasPrice`
 
-Information about the latest price of gas.
+有关最新燃气价格的信息。
 
-**fields:**
+**字段:**
 
 `gasPrice`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas price for the latest block produced.
+最新生成的区块的燃气价格。
 
 `blockHeight`: [`U32!`](/docs/reference/scalars/#u32)
 
-The block height for the latest block produced.
+最新生成的区块的区块高度。
 
 ## `LightOperation`
 
-The operation dependent on the size of its inputs, and the time required per unit of input less that of a single no-op operation
+依赖于其输入大小和每单位输入时间所需的时间，小于单个空操作的操作
 
-**fields:**
+**字段:**
 
 `base`: [`U64!`](/docs/reference/scalars/#u64)
 
-The minimum gas that this operation can cost
+此操作可能耗费的最小燃气量
 
 `unitsPerGas`: [`U64!`](/docs/reference/scalars/#u64)
 
-The units that can be processed with a single gas
+可以使用单个燃气处理的单位
 
 ## `MerkleProof`
 
-Information about a merkle proof.
+关于 Merkle 证明的信息。
 
-**fields:**
+**字段:**
 
 `proofSet`: [`[Bytes32!]!`](/docs/reference/scalars/#bytes32)
 
-The proof set of the message proof.
+消息证明的证明集。
 
 `proofIndex`: [`U64!`](/docs/reference/scalars/#u64)
 
-The index used to generate this proof.
+用于生成此证明的索引。
 
 ## `Message`
 
-Contains information about a message.
+包含有关消息的信息。
 
-**fields:**
+**字段:**
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of base asset coins sent with the message.
+随消息发送的基础资产硬币数量。
 
 `sender`: [`Address!`](/docs/reference/scalars/#address)
 
-The address of the message sender.
+消息发送者的地址。
 
 `recipient`: [`Address!`](/docs/reference/scalars/#address)
 
-The recipient of the message.
+消息的接收者。
 
 `nonce`: [`Nonce!`](/docs/reference/scalars/#nonce)
 
-The nonce value for the message.
+消息的 nonce 值。
 
 `data`: `[Int!]!`
 
-The vector with the message data.
+包含消息数据的向量。
 
 `daHeight`: [`U64!`](/docs/reference/scalars/#u64)
 
-The block height of the data availability layer up to which (inclusive) input messages are processed.
+数据可用性层的区块高度，到达此高度（包括）时，输入消息将被处理。
 
 ## `MessageCoin`
 
-Information about message coin
+有关消息硬币的信息
 
-**fields:**
+**字段:**
 
 `sender`: [`Address!`](/docs/reference/scalars/#address)
 
-The address of the message sender.
+消息的发送者地址。
 
 `recipient`: [`Address!`](/docs/reference/scalars/#address)
 
-The recipient of the message.
+消息的接收者地址。
 
 `nonce`: [`Nonce!`](/docs/reference/scalars/#nonce)
 
-The nonce value for the message.
+消息的 nonce 值。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of base asset coins sent with the message.
+随消息发送的基础资产硬币数量。
 
 `assetId`: [`AssetId`](/docs/reference/scalars/#assetid)
 
-The asset id of the coins transferred.
+传输的硬币的资产 ID。
 
 `daHeight`: [`U64!`](/docs/reference/scalars/#u64)
 
-The block height of the data availability layer up to which (inclusive) input messages are processed.
-
+数据可用性层的区块高度，到达此高度（包括）时，输入消息将被处理。
 ## `MessageProof`
 
-Information about the message proof.
+有关消息证明的信息。
 
-**fields:**
+**字段:**
 
 `messageProof`: [`MerkleProof!`](#merkleproof)
 
-The merkle proof of the message.
+消息的 Merkle 证明。
 
 `blockProof`: [`MerkleProof!`](#merkleproof)
 
-The merkle proof of the block.
+区块的 Merkle 证明。
 
 `messageBlockHeader`: [`Header!`](#header)
 
-The merkle proof of the message.
+消息的 Merkle 证明。
 
 `commitBlockHeader`: [`Header!`](#header)
 
-The merkle proof of the block.
+区块的 Merkle 证明。
 
 `sender`: [`Address!`](/docs/reference/scalars/#address)
 
-The message sender.
+消息发送者。
 
 `recipient`: [`Address!`](/docs/reference/scalars/#address)
 
-The message recipient.
+消息接收者。
 
 `nonce`: [`Nonce!`](/docs/reference/scalars/#nonce)
 
-The message nonce.
+消息的 nonce。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount sent in the message.
+消息中发送的金额。
 
 `data`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The data from the message.
+消息中的数据。
 
 ## `MessageStatus`
 
-The status type of a message.
+消息的状态类型。
 
-**fields:**
+**字段:**
 
 `state`: [`MessageState`](/docs/reference/enums/#messagestate)
 
-The state of the message.
+消息的状态。
 
 ## `NodeInfo`
 
-Information about a node.
+有关节点的信息。
 
-**fields:**
+**字段:**
 
 `utxoValidation`: `Boolean!`
 
-Whether or not the node is using UTXO validation.
+节点是否使用 UTXO 验证。
 
 `vmBacktrace`: `Boolean!`
 
-Whether or not logging of backtraces from VM errors is enabled.
+是否启用来自 VM 错误的回溯日志记录。
 
 `maxTx`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum number of transactions.
+最大交易数。
 
 `maxDepth`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum number of connected UTXOs allowed, excluding contracts.
+允许的最大连接 UTXO 数，不包括合约。
 
 `nodeVersion`: `String!`
 
-The node version.
+节点版本。
 
 `peers`: [`PeerInfo!`](#peerinfo)!`
 
-The information about the node's peers.
+有关节点对等体的信息。
 
 ## `OutputBreakpoint`
 
-A breakpoint during debugging.
+调试期间的断点。
 
-**fields:**
+**字段:**
 
 `contract`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The contract address.
+合约地址。
 
 `pc`: [`U64!`](/docs/reference/scalars/#u64)
 
-The value of the program counter register `$pc`, which is the memory address of the current instruction.
+程序计数器寄存器 `$pc` 的值，即当前指令的内存地址。
 
 ## `PeerInfo`
 
-Information about a peer node.
+关于对等节点的信息。
 
-**fields:**
+**字段:**
 
 `id`: `String!`
 
-The `libp2p` ID of the peer node.
+对等节点的 `libp2p` ID。
 
 `addresses`: `[String!]!`
 
-The advertised addresses that can be used to connect to this peer node.
+可以用于连接到此对等节点的广告地址。
 
 `clientVersion`: `String`
 
-The self-reported version of the client the peer node is using.
+对等节点正在使用的客户端的自报版本。
 
 `blockHeight`: [`U32`](/docs/reference/scalars/#u32)
 
-The last reported height of the peer node.
+对等节点的最后报告高度。
 
 `lastHeartbeatMs`: [`U64!`](/docs/reference/scalars/#u64)
 
-The time of the last heartbeat from this peer node in Unix epoch time milliseconds.
+来自此对等节点的上次心跳的时间，以 Unix 纪元时间毫秒为单位。
 
 `appScore`: `Float!`
 
-The internal Fuel peer-to-peer reputation of this peer node.
+此对等节点的内部 Fuel 点对点声誉。
 
 ## `PoAConsensus`
 
-The proof-of-authority (PoA) consensus type.
+权威证明（PoA）共识类型。
 
-**fields:**
+**字段:**
 
 `signature`: [`Signature!`](/docs/reference/scalars/#signature)
 
-The signature of the block produced by PoA consensus.
+由 PoA 共识产生的区块的签名。
 
 ## `ProgramState`
 
-An object representing the state of execution of a transaction.
+表示交易执行状态的对象。
 
-**fields:**
+**字段:**
 
 `returnType`: [`ReturnType!`](/docs/reference/enums/#returntype)
 
-The type of return response for the transaction.
+交易的返回响应类型。
 
 `data`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-The data returned from the transaction.
+从交易返回的数据。
+
 
 ## `Policies`
 
-Information about the policies of a transaction.
+有关交易策略的信息。
 
-**fields:**
+**字段:**
 
 `tip`: [`U64`](/docs/reference/scalars/#u64)
 
-The user-defined `tip` is a new transaction policy that replaced the `GasPrice` transaction policy. `Tip` allows the user to specify how much they want to pay to the block producer to incentivize them to include the user's transaction in the block.
+用户定义的 `tip` 是替代了 `GasPrice` 交易策略的新交易策略。`Tip` 允许用户指定他们愿意支付多少给区块生产者，以鼓励他们在区块中包含用户的交易。
 
 `witnessLimit`: [`U64`](/docs/reference/scalars/#u64)
 
-The limit of witnesses that can be included in the transaction.
+可包含在交易中的见证人数量限制。
 
 `maturity`: [`U32`](/docs/reference/scalars/#u32)
 
-The minimum block height that the transaction can be included at.
+交易可以包含在的最小区块高度。
 
 `maxFee`: [`U64`](/docs/reference/scalars/#u64)
 
-The maximum fee allowed for the transaction to consume.
+交易允许消耗的最大费用。
 
 ## `PredicateParameters`
 
-The consensus parameters for predicates.
+谓词的共识参数。
 
-**fields:**
+**字段:**
 
 `version`: [`PredicateParametersVersion!`](/docs/reference/unions/#predicateparametersversion)
 
-The version of the consensus parameters.
+共识参数的版本。
 
 `maxPredicateLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum length of a predicate.
+谓词的最大长度。
 
 `maxPredicateDataLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum length of predicate data.
+谓词数据的最大长度。
 
 `maxGasPerPredicate`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum amount of gas allowed for a predicate.
+谓词允许的最大 gas 量。
 
 `maxMessageDataLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum length of message data for a predicate.
+谓词的消息数据的最大长度。
 
 ## `Receipt`
 
-An object representing all possible types of receipts.
+表示所有可能类型的收据的对象。
 
-**fields:**
+**字段:**
 
 `id`: [`ContractId!`](/docs/reference/scalars/#contractid)
 
-The ID of the contract that produced the receipt.
+生成收据的合约的 ID。
 
 `pc`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of the program counter register `$pc`, which is the memory address of the current instruction.
+程序计数器寄存器 `$pc` 的值，即当前指令的内存地址。
 
 `is`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of register `$is`, which is the pointer to the start of the currently-executing code.
+寄存器 `$is` 的值，即当前执行代码的开始指针。
 
 `to`: [`Contract`](#contract)
 
-The recipient contract.
+收款合约。
 
 `toAddress`: [`Address`](/docs/reference/scalars/#address)
 
-The recipient address.
+收款地址。
 
 `amount`: [`U64`](/docs/reference/scalars/#u64)
 
-The amount of coins transferred.
+转账的币数量。
 
 `assetId`: [`AssetId`](/docs/reference/scalars/#assetid)
 
-The asset id of the coins transferred.
+转账的币的资产 ID。
 
 `gas`: [`U64`](/docs/reference/scalars/#u64)
 
-The gas used for the transaction.
+交易消耗的 gas。
 
 `param1`: [`U64`](/docs/reference/scalars/#u64)
 
-The first parameter for a `CALL` receipt type, holds the function selector.
+`CALL` 收据类型的第一个参数，保存函数选择器。
 
 `param2`: [`U64`](/docs/reference/scalars/#u64)
 
-The second parameter for a `CALL` receipt type, typically used for the user-specified input to the ABI function being selected.
+`CALL` 收据类型的第二个参数，通常用于 ABI 函数的用户指定输入。
 
 `val`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of registers at the end of execution, used for debugging.
+执行结束时寄存器的值，用于调试。
 
 `ptr`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of the pointer register, used for debugging.
+指针寄存器的值，用于调试。
 
 `digest`: [`Bytes32`](/docs/reference/scalars/#bytes32)
 
-A 32-byte hash of `MEM[$rC, $rD]`. The syntax `MEM[x, y]` means the memory range starting at byte `x`, of length `y` bytes.
+`MEM[$rC, $rD]` 的 32 字节哈希。`MEM[x, y]` 语法表示从字节 `x` 开始的长度为 `y` 字节的内存范围。
 
 `reason`: [`U64`](/docs/reference/scalars/#u64)
 
-The decimal string representation of an 8-bit unsigned integer for the panic reason. Only returned if the receipt type is `PANIC`.
+恐慌原因的 8 位无符号整数的十进制字符串表示。只有收据类型为 `PANIC` 时才返回。
 
 `ra`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of register `$rA`.
+寄存器 `$rA` 的值。
 
 `rb`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of register `$rB`.
+寄存器 `$rB` 的值。
 
 `rc`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of register `$rC`.
+寄存器 `$rC` 的值。
 
 `rd`: [`U64`](/docs/reference/scalars/#u64)
 
-The value of register `$rD`.
+寄存器 `$rD` 的值。
 
 `len`: [`U64`](/docs/reference/scalars/#u64)
 
-The length of the receipt.
+收据的长度。
 
 `receiptType`: [`ReceiptType!`](/docs/reference/enums/#receipttype)
 
-The type of receipt.
+收据类型。
 
 `result`: [`U64`](/docs/reference/scalars/#u64)
 
-`0` if script exited successfully, `any` otherwise.
+如果脚本成功退出，则为 `0`，否则为 `any`。
 
 `gasUsed`: [`U64`](/docs/reference/scalars/#u64)
 
-The amount of gas consumed by the script.
+脚本消耗的 gas 量。
 
 `data`: [`HexString`](/docs/reference/scalars/#hexstring)
 
-The receipt data.
+收据数据。
 
 `sender`: [`Address`](/docs/reference/scalars/#address)
 
-The address of the message sender.
+消息发送者的地址。
 
 `recipient`: [`Address`](/docs/reference/scalars/#address)
 
-The address of the message recipient.
+消息接收者的地址。
 
 `nonce`: [`Nonce`](/docs/reference/scalars/#nonce)
 
-The nonce value for a message.
+消息的 nonce 值。
 
 `contractId`: [`ContractId`](/docs/reference/scalars/#contractid)
 
-The contract id.
+合约 ID。
 
 `subId`: [`Bytes32`](/docs/reference/scalars/#bytes32)
 
-The sub id.
+子 ID。
+
 
 ## `RelayedTransactionFailed`
 
-Details about why a relayed transaction from an L1 failed.
+关于 L1 中转事务失败的详细信息。
 
-**fields:**
+**字段:**
 
 `blockHeight`: `U32!`
 
-The block height at the time the relayed transaction failed.
+中转事务失败时的区块高度。
 
 `failure`: `String!`
 
-The reason why the transaction failed.
+事务失败的原因。
 
 ## `RunResult`
 
-The result of a transaction execution.
+交易执行的结果。
 
-**fields:**
+**字段:**
 
 `state`: `RunState!`
 
-The state of the transaction execution.
+交易执行的状态。
 
 `breakpoint`: `OutputBreakpoint`
 
-A breakpoint during debugging.
+调试过程中的断点。
 
 `jsonReceipts`: `[String!]!`
 
-The receipts of the transaction in JSON format.
+以 JSON 格式表示的交易收据。
 
 ## `ScriptParameters`
 
-The consensus parameters for a script.
+脚本的共识参数。
 
-**fields:**
+**字段:**
 
 `version`: [`ScriptParametersVersion!`](/docs/reference/unions/#scriptparametersversion)
 
-The version of the consensus parameters.
+共识参数的版本。
 
 `maxScriptLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum length of a script.
+脚本的最大长度。
 
 `maxScriptDataLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum length of script data.
+脚本数据的最大长度。
 
 ## `SpendQueryElementInput`
 
-A type used in the `queryPerAsset` argument for the `resourcesToSpend` query.
+用于 `resourcesToSpend` 查询的 `queryPerAsset` 参数中的一种类型。
 
-**fields:**
+**字段:**
 
 `assetId`: [`AssetId!`](/docs/reference/scalars/#assetid)
 
-The asset id for the asset.
+资产的资产 ID。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
-The amount of coins to send.
+要发送的硬币数量。
 
 `max`: [`U64`](/docs/reference/scalars/#u64)
 
-The max number of resources in the selection.
+选择中资源的最大数量。
 
 ## `SqueezedOutStatus`
 
-The status for a transaction that was squeezed out of the transaction pool.
+从交易池挤出的事务的状态。
 
-**fields:**
+**字段:**
 
 `reason`: `String!`
 
-The reason why the transaction was squeezed out.
+事务被挤出的原因。
 
 ## `StateTransitionPurpose`
 
-Details about a state transition upgrade.
+关于状态转换升级的详细信息。
 
-**fields:**
+**字段:**
 
 `root`: [`Bytes32!`](/docs/reference/scalars/#bytes32)
 
-The merkle root of the new state.
+新状态的 Merkle 根。
 
 ## `SuccessStatus`
 
-The status of a successful transaction.
+成功交易的状态。
 
-**fields:**
+**字段:**
 
 `transactionId`: [`TransactionId!`](/docs/reference/scalars/#transactionid)
 
-The ID of the transaction.
+交易的 ID。
 
 `block`: [`Block!`](#block)
 
-The block of the transaction.
+交易所在的区块。
 
 `time`: [`Tai64Timestamp!`](/docs/reference/scalars/#tai64timestamp)
 
-The time of the transaction.
+交易时间。
 
 `programState`: [`ProgramState`](#programstate)
 
-The state of the program execution.
+程序执行状态。
 
 `receipts`: [`[Receipt!]!`](#receipt)
 
-The transaction receipts.
+交易收据。
 
 `totalGas`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total amount of gas used.
+使用的总 gas 量。
 
 `totalFee`: [`U64!`](/docs/reference/scalars/#u64)
 
-The total fee for the transaction.
+交易的总费用。
 
 ## `SubmittedStatus`
 
-The status for a submitted transaction.
+已提交交易的状态。
 
-**fields:**
+**字段:**
 
 `time`: [`Tai64Timestamp!`](/docs/reference/scalars/#tai64timestamp)
 
-The time a transaction was submitted
+提交交易的时间。
+
 
 ## `Transaction`
 
-An object containing information about a transaction.
+包含有关事务的信息的对象。
 
-**fields:**
+**字段:**
 
 `id`: [`TransactionId!`](/docs/reference/scalars/#transactionid)
 
-A unique transaction id.
+唯一的事务 ID。
 
 `inputAssetIds`: [`[AssetId!]`](/docs/reference/scalars/#assetid)
 
-An array of asset ids used for the transaction inputs.
+用于事务输入的资产 ID 数组。
 
 `inputContracts`: [`[Contract!]`](#contract)
 
-An array of contracts used for the transaction inputs.
+用于事务输入的合约数组。
 
 `inputContract`: [`InputContract`](#inputcontract)
 
-A contract used for the transaction input.
+用于事务输入的合约。
 
 `policies`: [`Policies`](#policies)
 
-The policies for the transaction.
+事务的策略。
 
 `scriptGasLimit`: [`U64`](/docs/reference/scalars/#u64)
 
-The gas limit for the transaction.
+事务的 gas 限制。
 
 `maturity`: [`U32`](/docs/reference/scalars/#u32)
 
-The minimum block height that the transaction can be included at.
+事务可以包含的最小区块高度。
 
 `mintAmount`: [`U64`](/docs/reference/scalars/#u64)
 
-The amount minted in the transaction.
+事务中铸币的数量。
 
 `mintAssetId`: [`AssetId`](/docs/reference/scalars/#assetid)
 
-The asset ID for coins minted in the transaction.
+事务中铸币的资产 ID。
 
 `mintGasPrice`: [`U64!`](/docs/reference/scalars/#u64)
 
-The gas price at the time of minting the block.
+铸币区块时的 gas 价格。
 
 `txPointer`: [`TxPointer`](/docs/reference/scalars/#txpointer)
 
-The location of the transaction in the block.
+事务在区块中的位置。
 
 `isScript`: `Boolean!`
 
-Whether or not the transaction is a script.
+事务是否为脚本。
 
 `isCreate`: `Boolean!`
 
-Whether or not the transaction is creating a new contract.
+事务是否创建新合约。
 
 `isMint`: `Boolean!`
 
-Whether or not the transaction is minting new coins.
+事务是否铸币。
 
 `isUpgrade`: `Boolean!`
 
-Whether or not the transaction is upgrading the network.
+事务是否升级网络。
 
 `isUpload`: `Boolean!`
 
-Whether or not the transaction is uploading state transition data to prepare for upgrading the network.
+事务是否上传状态转换数据以准备升级网络。
 
 `inputs`: [`[Input!]`](/docs/reference/unions/#input)
 
-An array of inputs for the transaction.
+事务的输入数组。
 
 `outputs`: [`[Output!]!`](/docs/reference/unions/#output)
 
-An array of outputs for the transaction.
+事务的输出数组。
 
 `outputContract`: [`ContractOutput`](#contractoutput)
 
-The contract output for the transaction.
+事务的合约输出。
 
 `witnesses`: [`[HexString!]`](/docs/reference/scalars/#hexstring)
 
-An array of witnesses.
+见证人的数组。
 
 `receiptsRoot`: [`Bytes32`](/docs/reference/scalars/#bytes32)
 
-The root of the receipts.
+收据的根。
 
 `status`: [`TransactionStatus`](/docs/reference/unions/#transactionstatus)
 
-The status of the transaction.
+事务的状态。
 
 `script`: [`HexString`](/docs/reference/scalars/#hexstring)
 
-The script to execute.
+要执行的脚本。
 
 `scriptData`: [`HexString`](/docs/reference/scalars/#hexstring)
 
-The script input parameters.
+脚本的输入参数。
 
 `bytecodeWitnessIndex`: `Int`
 
-The witness index of contract bytecode.
+合约字节码的见证索引。
 
 `salt`: [`Salt`](/docs/reference/scalars/#salt)
 
-The salt value for the transaction.
+事务的盐值。
 
 `storageSlots`: [`[HexString!]`](/docs/reference/scalars/#hexstring)
 
-An array of storage slot.
+存储槽的数组。
 
 `bytecodeRoot`: [`Bytes32`](/docs/reference/scalars/#bytes32)
 
-The Merkle tree root of the bytecode that is being uploaded.
+正在上传的字节码的 Merkle 树根。
 
 `subsectionIndex`: [`U16`](/docs/reference/scalars/#u16)
 
-The index of the subsection of the bytecode.
+字节码的子节索引。
 
 `subsectionsNumber`: [`U16`](/docs/reference/scalars/#u16)
 
-The total number of subsections that the bytecode was divided into.
+将字节码分成的总子节数。
 
 `proofSet`: [`[Bytes32!]`](/docs/reference/scalars/#bytes32)
 
-The proof set helps to verify the connection of the subsection to the `root`.
+证明集有助于验证子节与 `root` 的连接。
 
 `upgradePurpose`: [`UpgradePurpose`](/docs/reference/unions/#upgradepurpose)
 
-The purpose of a network upgrade.
+网络升级的目的。
 
 `rawPayload`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-A hex string of the raw transaction payload.
+原始事务负载的十六进制字符串。
 
 ## `TxParameters`
 
-The consensus parameters for a transaction.
+事务的共识参数。
 
-**fields:**
+**字段:**
 
 `version`: [`TxParametersVersion!`](/docs/reference/unions/#txparametersversion)
 
-The version of the consensus parameters.
+共识参数的版本。
 
 `maxInputs`: [`U8!`](/docs/reference/scalars/#u8)
 
-The maximum number of inputs allowed for a transaction.
+事务允许的最大输入数量。
 
 `maxOutputs`: [`U8!`](/docs/reference/scalars/#u8)
 
-The maximum number of outputs allowed for a transaction.
+事务允许的最大输出数量。
 
 `maxWitnesses`: [`U32!`](/docs/reference/scalars/#u32)
 
-The maximum number of witnesses allowed for a transaction.
+事务允许的最大见证数量。
 
 `maxGasPerTx`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum amount of gas allowed for a transaction.
+事务允许的最大 gas 量。
 
 `maxSize`: [`U64!`](/docs/reference/scalars/#u64)
 
-The maximum size allowed for a transaction.
+事务允许的最大大小。
 
 `maxBytecodeSubsections`: [`U16!`](/docs/reference/scalars/#u16)
 
-The maximum number of subsections the new executor bytecode can be broken into.
+新执行器字节码可以分成的最大子节数。
 
 ## `VariableOutput`
 
-The output type for a transaction that outputs an amount that may vary based on transaction execution.
+根据事务执行结果可能变化的输出类型。
 
-**fields:**
+**字段:**
 
 `to`: [`Address`](/docs/reference/scalars/#address)
 
-The address the coins were sent to.
+发送硬币的地址。
 
 `amount`: [`U64`](/docs/reference/scalars/#u64)
 
-The amount of coins in the output.
+输出中的硬币数量。
 
 `assetId`: [`AssetId`](/docs/reference/scalars/#assetid)
 
-The asset id for the coins sent.
+发送的硬币的资产 ID。

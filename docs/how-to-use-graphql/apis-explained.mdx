@@ -1,19 +1,19 @@
 ---
-title: Schema & Type System
-category: How To Use GraphQL
+title: 模式(Schema)和类型系统
+category: 如何使用GraphQL
 ---
 
-# Schema & Type System
+# 模式(Schema)和类型系统
 
-Unlike traditional REST APIs, GraphQL comes with a strong type system to describe your API. A GraphQL schema describes the data you can query using the API endpoint by defining a set of types and fields that are mapped to those types.
+与传统的 REST API 不同，GraphQL 具有强大的类型系统来描述您的 API。GraphQL 模式描述了您可以使用 API 端点查询的数据，通过定义一组类型和映射到这些类型的字段。
 
-Read along to learn about various GraphQL types.
+跟着阅读，了解各种 GraphQL 类型。
 
-## Object Types
+## 对象类型
 
-Object types in GraphQL describe an object with underlying fields that can be queried from your API endpoint.
+对象类型在 GraphQL 中描述了一个带有底层字段的对象，可以从您的 API 端点查询。
 
-As an example, an object type can be defined as shown below:
+例如，对象类型可以定义如下所示：
 
 ```graphql
 type actors {
@@ -22,23 +22,23 @@ type actors {
 }
 ```
 
-Here,`actors` is an object type and `name` and `appearsIn` are fields mapped to type `actors`.
+在这里，`actors`是一个对象类型,而`name` 和 `appearsIn` 则是映射到 `actors`中的属性。
 
-## Scalar Types
+## 标量类型
 
-> From The GraphQL Documentation:
+> 来自 GraphQL 文档：
 
-In the example for object types above, field `name` is of type `String`. String in GraphQL is by default a scalar type. This means that it resolves to a definite value and cannot have further sub-fields while querying. Scalar types represent the leaves of a query.
+在上面对象类型的示例中，字段 `name` 的类型是 `String`。在 GraphQL 中，字符串默认是标量类型。这意味着它解析为一个确定的值，并且在查询时不能有进一步的子字段。标量类型表示查询的叶子。
 
-GraphQL comes with a set of default scalar types out-of-the-box such as below:
+GraphQL 自带一组默认的标量类型，如下所示：
 
-- `Int`: A signed 32‐bit integer.
-- `Float`: A signed double-precision floating-point value.
-- `String`: A UTF‐8 character sequence.
-- `Boolean`: true or false.
-- `ID`: The ID scalar type represents a unique identifier, often used to re-fetch an object or as the key for a cache. The ID type is serialized in the same way as a String; however, defining it as an ID signifies that it is not intended to be human‐readable.
+- `Int`：有符号的 32 位整数。
+- `Float`：有符号的双精度浮点数值。
+- `String`：UTF-8 字符序列。
+- `Boolean`：true 或 false。
+- `ID`：ID 标量类型表示一个唯一的标识符，通常用于重新获取对象或作为缓存的键。ID 类型与字符串相同方式序列化；但是，将其定义为 ID 表示它不打算用于人类阅读。
 
-Fields can also be of types that are not scalar by default, but resolve to scalar values upon querying. For instance, in the following query, the `name` and `appearsIn` fields resolve to scalar types.
+字段也可以是默认情况下不是标量的类型，但在查询时解析为标量值。例如，在以下查询中，`name` 和 `appearsIn` 字段解析为标量类型。
 
 ```graphql
 {
@@ -49,7 +49,7 @@ Fields can also be of types that are not scalar by default, but resolve to scala
 }
 ```
 
-This is because in the schema, `name` and `appearIn` do not have further queryable sub-fields as described below:
+这是因为在模式中，`name` 和 `appearIn` 没有进一步可查询的子字段，如下所述：
 
 ```graphql
 {
@@ -66,13 +66,13 @@ This is because in the schema, `name` and `appearIn` do not have further queryab
 }
 ```
 
-## Lists and Non-nulls
+## 列表和非空值
 
-> From the GraphQL documentation:
+> 来自 GraphQL 文档：
 
-Object types, scalars, and enums are the only kinds of types you can define in GraphQL. But when you use the types in other parts of the schema, or in your query variable declarations, you can apply additional type modifiers that affect validation of those values.
+对象类型、标量和枚举是您可以在 GraphQL 中定义的唯一类型。但是，当您在模式的其他部分或查询变量声明中使用类型时，可以应用其他类型修饰符，影响这些值的验证。
 
-Let's look at an example:
+让我们看一个示例：
 
 ```graphql
 type Character {
@@ -81,9 +81,10 @@ type Character {
 }
 ```
 
-Here, we're using a String type and marking it as Non-Null by adding an exclamation mark `!` after the type name. This means that our server always expects to return a non-null value for this field, and if it ends up getting a null value that will actually trigger a GraphQL execution error, letting the client know that something has gone wrong.
+在这里，我们使用了String类型，并通过在类型名称后添加感叹号`!`来将其标记为非空。这意味着我们的服务器始终期望返回此字段的非空值，如果最终获取到空值，则会触发GraphQL执行错误，通知客户端出现了问题。
 
-The Non-Null type modifier can also be used when defining arguments for a field, causing the GraphQL server to return a validation error if a null value is passed either in the GraphQL string or the variables.
+非空类型修饰符还可用于为字段定义参数，导致GraphQL服务器在GraphQL字符串或变量中传递空值时返回验证错误。
+
 
 ```graphql
 query DroidById($id: ID!) {
@@ -115,20 +116,19 @@ query DroidById($id: ID!) {
 ```graphql
 myField: [String!]
 ```
-
-This means that the list itself can be null, but it can't have any null members. For example, in JSON:
+这意味着列表本身可以为null，但它不能有任何null成员。例如，在JSON中：
 
 ```json
-myField: null // valid
-myField: [] // valid
-myField: ['a', 'b'] // valid
-myField: ['a', null, 'b'] // error
+myField: null // 有效
+myField: [] // 有效
+myField: ['a', 'b'] // 有效
+myField: ['a', null, 'b'] // 错误
 
 ```
 
-## Union types
+## 联合类型
 
-When a query returns a union type, you can use `... on` to specify the query fields for a certain return type. These are also called inline fragments. For example, the `hero` query below returns a union type of either `Droid` or `Human`.
+当查询返回一个联合类型时，您可以使用`... on`来指定特定返回类型的查询字段。这些也被称为内联片段。例如，下面的`hero`查询返回`Droid`或`Human`中的一个联合类型。
 
 ```graphql
 query HeroForEpisode($ep: Episode!) {
@@ -144,9 +144,9 @@ query HeroForEpisode($ep: Episode!) {
 }
 ```
 
-## Connections
+## 连接
 
-Connections are a type of response used whenever you are expecting multiple results that may require pagination. Each query return type that ends in "Connection" will include the following return fields:
+当您期望多个结果并且可能需要分页时，连接是一种响应类型。每个以"Connection"结尾的查询返回类型都将包含以下返回字段：
 
 ```graphql
 pageInfo: PageInfo!
@@ -156,38 +156,38 @@ nodes: [Something!]!
 
 ### `PageInfo`
 
-`pageInfo` returns an object that includes information about the returned page of results:
+`pageInfo`返回一个对象，其中包含有关返回结果页面的信息：
 
 `hasPreviousPage: Boolean!`
-Whether or not the result has a previous page.
+结果是否有前一页。
 
 `hasNextPage: Boolean!`
-Whether or not the result has another page after it.
+结果是否有下一页。
 
 `startCursor: String`
-The starting cursor that identifies the first page.
+标识第一页的起始游标。
 
 `endCursor: String`
-The end cursor that identifies the last page.
+标识最后一页的结束游标。
 
-### Edges
+### 边缘
 
-`edges` returns an array of edge objects, which includes the cursor and first node for that page. You can use this data to help with pagination.
+`edges`返回一个边缘对象数组，其中包含该页面的游标和第一个节点。您可以使用这些数据来帮助分页。
 
-### Nodes
+### 节点
 
-`nodes` returns an array of whichever type you are expecting paginated results for.
+`nodes`返回一个数组，其中包含您期望的分页结果的任何类型。
 
-### Arguments
+### 参数
 
-Each of these queries also accepts the following arguments:
+这些查询还接受以下参数：
 `first: Int`
 `after: String`
 `last: Int`
 `before: String`
 
-`first` and `last` both accept an integer, which sets the number of results returned for each page. `first` will paginate the results starting at the beginning, while `last` will start from the end. It is required to pass an argument for either `first` or `last`. If no argument is given, the query will not return any results.
+`first`和`last`都接受一个整数，用于设置每页返回的结果数。`first`将从开头分页结果，而`last`将从末尾开始。必须为`first`或`last`之一传递参数。如果未给出参数，则查询将不返回任何结果。
 
-`after` and `before` both accept a cursor, which you can use to request different pages. These are both optional arguments.
+`after`和`before`都接受一个游标，您可以使用它来请求不同的页面。这两个都是可选参数。
 
-You can learn more about the connection model and pagination in the official GraphQL docs here: https://graphql.org/learn/pagination/
+您可以在这里的官方GraphQL文档中了解更多关于连接模型和分页的信息：[https://graphql.org/learn/pagination/](https://graphql.org/learn/pagination/)

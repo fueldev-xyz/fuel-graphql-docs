@@ -1,74 +1,74 @@
 ---
-title: Scalars
-category: Reference
+title: 标量
+category: 参考资料
 ---
 
-# Scalars
+# 标量
 
 ## `Address`
 
-An address of an externally owned account identified by a 32 byte string prefixed by `0x`.
+由32字节字符串表示的外部拥有账户地址，前缀为`0x`。
 
 ## `AssetId`
 
-A 32 byte unique ID used to identify a coin. On the testnet, the `assetId` is `0x0000000000000000000000000000000000000000000000000000000000000000`.
+用于标识硬币的32字节唯一ID。在测试网中，`assetId` 为 `0x0000000000000000000000000000000000000000000000000000000000000000`。
 
 ## `BlockId`
 
-A unique hash identifier for a block.
+块的唯一哈希标识符。
 
 ## `Bytes32`
 
-32 bytes to hold arbitrary data, usually as a hex string. `Bytes32` is the base type for cryptographic primitives like `Address` or `Message`.
+32字节，用于存储任意数据，通常为十六进制字符串。`Bytes32`是加密原语的基本类型，如`Address`或`Message`。
 
 ## `ContractId`
 
-A wrapped 32byte hash that is used to uniquely identify a contract.
+用于唯一标识合约的32字节哈希包装。
 
 ## `HexString`
 
-A way to pass in bytes as hex data. This is used for variable byte length types. Predicates and predicate data are always a hex string.
+以十六进制数据形式传递字节的方式。这用于可变字节长度类型。谓词和谓词数据总是十六进制字符串。
 
 ## `Nonce`
 
-A random or pseudo-random number generated for a single use to ensure data freshness and prevent replay attacks.
+一个随机或伪随机数，生成一次性使用，以确保数据的新鲜度并防止重放攻击。
 
 ## `RelayedTransactionId`
 
-The ID for a relayed transaction.
+中继交易的ID。
 
 ## `Salt`
 
-Sometimes referred to as a nonce. A unique, random value used to distinguish two things that are otherwise identical. This is used in contract deployments so you can deploy contracts that are otherwise exactly the same.
+有时称为随机数。用于区分两个否则完全相同的事物的唯一随机值。这在合约部署中使用，因此可以部署完全相同的合约。
 
 ## `Signature`
 
-A cryptographic signature used to authorize messages and transactions.
+用于授权消息和交易的加密签名。
 
 ## `Tai64Timestamp`
 
-A TAI 64 timestamp.
+TAI 64时间戳。
 
 ## `TransactionId`
 
-A unique 32 byte hash identifier for a transaction.
+交易的32字节唯一哈希标识符。
 
 ## `TxPointer`
 
-The location of the transaction in the block. It can be used by UTXOs as a reference to the transaction or by the transaction itself to make it unique.
+块中交易的位置。可以被UTXO用作交易的引用，也可以被交易本身用来使其唯一。
 
 ## `U16`
 
-Unsigned 16 bit integer.
+无符号16位整数。
 
 ## `U32`
 
-Unsigned 32 bit integer.
+无符号32位整数。
 
 ## `U64`
 
-Unsigned 64 bit integer. The default GraphQL `int` scalar does not cover the range of values needed because the FuelVM word size is 64bit.
+无符号64位整数。默认的GraphQL `int` 标量不涵盖所需的值范围，因为FuelVM的字大小为64位。
 
 ## `UtxoId`
 
-A unique 32 byte identifier for a UTXO.
+UTXO的32字节唯一标识符。

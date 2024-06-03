@@ -1,121 +1,106 @@
 ---
-title: Unions
-category: Reference
+title: 联合类型
+category: 参考资料
 ---
 
-# Union Types
+# 联合类型
 
 ## `CoinType`
 
-The type of coin being used.
+使用的代币类型。
 
-**Types:**
+**类型:**
 
-[`Coin`](/docs/reference/objects/#coin): A standard coin.
+[`Coin`](/docs/reference/objects/#coin): 标准代币。
 
-[`MessageCoin`](/docs/reference/objects/#messagecoin): A message coin.
+[`MessageCoin`](/docs/reference/objects/#messagecoin): 消息代币。
 
 ## `Consensus`
 
-The type of consensus mechanism used to validate a block.
+用于验证区块的共识机制类型。
 
-**Types:**
+**类型:**
 
-[`Genesis`](/docs/reference/objects/#genesis): Genesis consensus
+[`Genesis`](/docs/reference/objects/#genesis): 创世共识
 
-[`PoAConsensus`](/docs/reference/objects/#poaconsensus): PoA
-consensus
+[`PoAConsensus`](/docs/reference/objects/#poaconsensus): 权威证明（PoA）共识
 
 ## `DependentCost`
 
-Contains the dependent cost of opcodes.
+包含操作码的依赖成本。
 
-**Types:**
+**类型:**
 
-[`LightOperation`](/docs/reference/objects/#lightoperation): Operations that can process many units with 1 gas
+[`LightOperation`](/docs/reference/objects/#lightoperation): 可以使用 1 gas 处理多个单元的操作
 
-[`HeavyOperation`](/docs/reference/objects/#heavyoperation): Operations that require more than 1 gas to process a single unit
+[`HeavyOperation`](/docs/reference/objects/#heavyoperation): 处理单个单元需要超过 1 gas 的操作
 
 ## `DryRunTransactionStatus`
 
-The status of a transaction dry run.
+交易预执行的状态。
 
-**Types:**
+**类型:**
 
-[`DryRunSuccessStatus`](/docs/reference/objects/#dryrunsuccessstatus): The transaction dry run was successful.
+[`DryRunSuccessStatus`](/docs/reference/objects/#dryrunsuccessstatus): 交易预执行成功。
 
-[`DryRunFailureStatus`](/docs/reference/objects/#dryrunfailurestatus): The transaction dry run failed.
+[`DryRunFailureStatus`](/docs/reference/objects/#dryrunfailurestatus): 交易预执行失败。
 
 ## `Input`
 
-An input type for a transaction.
+交易的输入类型。
 
-**Types:**
+**类型:**
 
-[`InputCoin`](/docs/reference/objects/#inputcoin): An input type for
-a coin.
+[`InputCoin`](/docs/reference/objects/#inputcoin): 代币的输入类型。
 
-[`InputContract`](/docs/reference/objects/#inputcontract): An input
-type for a contract.
+[`InputContract`](/docs/reference/objects/#inputcontract): 合约的输入类型。
 
-[`InputMessage`](/docs/reference/objects/#inputmessage): An input
-type for a message.
+[`InputMessage`](/docs/reference/objects/#inputmessage): 消息的输入类型。
 
 ## `Output`
 
-An output type for a transaction.
+交易的输出类型。
 
-**Types:**
+**类型:**
 
-[`CoinOutput`](/docs/reference/objects/#coinoutput): Indicates coins
-were forwarded from one address to another.
-Can be used during transaction creation when the recipient, asset, and amount is known.
+[`CoinOutput`](/docs/reference/objects/#coinoutput): 表示代币从一个地址转发到另一个地址。可在交易创建期间使用，当收件人、资产和金额已知时。
 
-[`ContractOutput`](/docs/reference/objects/#contractoutput):
-Indicates the transaction updated the state of a contract.
+[`ContractOutput`](/docs/reference/objects/#contractoutput): 表示交易更新了合约的状态。
 
-[`ChangeOutput`](/docs/reference/objects/#changeoutput): Indicates
-that the output's amount may vary based on transaction execution, but is
-otherwise identical to a Coin output. Output changes are always guaranteed to
-have an amount of zero since they're only set after execution terminates.
+[`ChangeOutput`](/docs/reference/objects/#changeoutput): 表示输出的金额可能会根据交易执行而变化，但与 Coin 输出相同。变更输出总是保证金额为零，因为它们只在执行终止后设置。
 
-[`VariableOutput`](/docs/reference/objects/#variableoutput): Similar
-to `ChangeOutput`, this output type indicates that the output's amount may vary
-based on transaction execution, but is otherwise identical to a Coin output. On
-initialization, the amount on variable outputs is zero, but during execution
-they could be set to a non-zero value.
+[`VariableOutput`](/docs/reference/objects/#variableoutput): 类似于 `ChangeOutput`，此输出类型表示输出的金额可能会根据交易执行而变化，但与 Coin 输出相同。初始化时，变量输出的金额为零，但在执行期间可能会设置为非零值。
 
-[`ContractCreated`](/docs/reference/objects/#contractcreated):
-Indicates a contract was deployed.
+[`ContractCreated`](/docs/reference/objects/#contractcreated): 表示合约已部署。
 
 ## `RelayedTransactionStatus`
 
-The status of a relayed transaction from a L1. If the transaction is valid, it will be included in part of a block. If the transaction is invalid, it will be skipped.
+L1 中继交易的状态。如果交易有效，它将包含在区块的一部分。如果交易无效，它将被跳过。
 
-**Types:**
+**类型:**
 
-[`RelayedTransactionFailed`](/docs/reference/objects/#relayedtransactionfailed): Details about why the relayed transaction failed.
+[`RelayedTransactionFailed`](/docs/reference/objects/#relayedtransactionfailed): 关于中继交易失败原因的详细信息。
 
 ## `TransactionStatus`
 
-The status type of a transaction.
+交易的状态类型。
 
-**Types:**
+**类型:**
 
-[`SubmittedStatus`](/docs/reference/objects/#submittedstatus): The transaction has been submitted.
+[`SubmittedStatus`](/docs/reference/objects/#submittedstatus): 交易已提交。
 
-[`SuccessStatus`](/docs/reference/objects/#successstatus): The transaction has succeeded.
+[`SuccessStatus`](/docs/reference/objects/#successstatus): 交易成功。
 
-[`SqueezedOutStatus`](/docs/reference/objects/#squeezedoutstatus): The transaction was kicked out of the mempool.
+[`SqueezedOutStatus`](/docs/reference/objects/#squeezedoutstatus): 交易被踢出内存池。
 
-[`FailureStatus`](/docs/reference/objects/#failurestatus): The transaction has failed.
+[`FailureStatus`](/docs/reference/objects/#failurestatus): 交易失败。
 
 ## `UpgradePurpose`
 
-The purpose of a network upgrade.
+网络升级的目的。
 
-**Types:**
+**类型:**
 
-[`ConsensusParametersPurpose`](/docs/reference/objects/#consensusparameterspurpose): The consensus parameters are being upgraded.
+[`ConsensusParametersPurpose`](/docs/reference/objects/#consensusparameterspurpose): 共识参数正在升级。
 
-[`StateTransitionPurpose`](/docs/reference/objects/#statetransitionpurpose): The state transition is being upgraded.
+[`StateTransitionPurpose`](/docs/reference/objects/#statetransitionpurpose): 状态转换正在升级。

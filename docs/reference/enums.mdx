@@ -1,134 +1,134 @@
 ---
-title: Enums
-category: Reference
+title: 枚举
+category: 参考资料
 ---
 
-# Enums
+# 枚举
 
 ## `ConsensusParametersVersion`
 
-The version of the consensus parameters.
+共识参数的版本。
 
-`V1`:
-Version 1.
+`V1`：
+版本 1。
 
 ## `ContractParametersVersion`
 
-The version of the contract-specific consensus parameters.
+合同特定共识参数的版本。
 
-`V1`:
-Version 1.
+`V1`：
+版本 1。
 
 ## `FeeParametersVersion`
 
-The version of the fee-specific consensus parameters.
+费用特定共识参数的版本。
 
-`V1`:
-Version 1.
+`V1`：
+版本 1。
 
 ## `GasCostsVersion`
 
-The version of the gas-specific consensus parameters.
+燃气特定共识参数的版本。
 
-`V1`:
-Version 1.
+`V1`：
+版本 1。
 
 ## `MessageState`
 
-The state of a message, either `UNSPENT`, `SPENT`, or `NOT_FOUND`.
+消息的状态，可以是 `UNSPENT`，`SPENT` 或 `NOT_FOUND`。
 
-`UNSPENT`:
-The message is unspent.
+`UNSPENT`：
+消息未被花费。
 
-`SPENT`:
-The message is spent.
+`SPENT`：
+消息已被花费。
 
-`NOT_FOUND`:
-The message was not found.
+`NOT_FOUND`：
+未找到消息。
 
 ## `ReceiptType`
 
-The receipt type indicating what kind of transaction generated the receipt.
+指示生成收据的交易类型的收据类型。
 
-`CALL`:
-The receipt was generated from a contract call.
+`CALL`：
+收据由合同调用生成。
 
-`RETURN`:
-The receipt was generated from a transaction that returned without data.
+`RETURN`：
+收据由没有返回数据的交易生成。
 
-`RETURN_DATA`:
-The receipt was generated from a transaction that returned data.
+`RETURN_DATA`：
+收据由返回数据的交易生成。
 
-`PANIC`:
-The receipt was generated from a failed contract call that panicked.
+`PANIC`：
+收据由合同调用失败时生成。
 
-`REVERT`:
-The receipt was generated from a failed contract call that reverted.
+`REVERT`：
+收据由合同调用回滚时生成。
 
-`LOG`:
-The receipt was generated from a log in the contract. The Log receipt is generated for non-reference types, namely `bool`, `u8`, `u16`, `u32`, and `u64`.
+`LOG`：
+收据由合同中的日志生成。日志收据是为非引用类型生成的，即 `bool`，`u8`，`u16`，`u32` 和 `u64`。
 
-`LOG_DATA`:
-The receipt was generated from a log in the contract. `LogData` is generated for reference types which include all types except for the non_reference types mentioned above.
+`LOG_DATA`：
+收据由合同中的日志生成。日志数据是为引用类型生成的，引用类型包括除上述非引用类型之外的所有类型。
 
-`TRANSFER`:
-The receipt was generated from a transaction that transferred coins to a contract.
+`TRANSFER`：
+收据由向合同转移硬币的交易生成。
 
-`TRANSFER_OUT`:
-The receipt was generated from a transaction that transferred coins to an address (rather than a contract).
+`TRANSFER_OUT`：
+收据由向地址（而不是合同）转移硬币的交易生成。
 
-`SCRIPT_RESULT`:
-The receipt was generated from a script.
+`SCRIPT_RESULT`：
+收据由脚本生成。
 
-`MESSAGE_OUT`:
-The receipt was generated from a message.
+`MESSAGE_OUT`：
+收据由消息生成。
 
-`MINT`:
-The receipt was generated from a mint.
+`MINT`：
+收据由铸币生成。
 
-`BURN`:
-The receipt was generated from a burn.
+`BURN`：
+收据由烧毁生成。
 
 ## `PredicateParametersVersion`
 
-The version of the predicate-specific consensus parameters.
+谓词特定共识参数的版本。
 
-`V1`:
-Version 1.
+`V1`：
+版本 1。
 
 ## `ReturnType`
 
-The type of return response for a transaction
+交易返回响应的类型。
 
-`RETURN`:
-Indicates the transaction returned without any data.
+`RETURN`：
+表示交易没有返回任何数据。
 
-`RETURN_DATA`:
-Indicates the transaction returned some data.
+`RETURN_DATA`：
+表示交易返回了一些数据。
 
-`REVERT`:
-Indicates the transaction reverted.
+`REVERT`：
+表示交易回滚。
 
 ## `RunState`
 
-The state of a [`RunResult`](/docs/reference/objects/#runresult).
+[`RunResult`](/docs/reference/objects/#runresult) 的状态。
 
-`COMPLETED`:
-All breakpoints have been processed, and the program has terminated.
+`COMPLETED`：
+所有断点已处理，程序已终止。
 
-`BREAKPOINT`:
-The program stopped on a breakpoint.
+`BREAKPOINT`：
+程序在断点处停止。
 
 ## `ScriptParametersVersion`
 
-The version of the script-specific consensus parameters.
+脚本特定共识参数的版本。
 
-`V1`:
-Version 1.
+`V1`：
+版本 1。
 
 ## `TxParametersVersion`
 
-The version of the transaction-specific consensus parameters.
+交易特定共识参数的版本。
 
-`V1`:
-Version 1.
+`V1`：
+版本 1。
