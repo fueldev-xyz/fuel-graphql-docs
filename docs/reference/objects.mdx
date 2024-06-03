@@ -193,7 +193,7 @@ UTXO的唯一32字节标识符。
 
 `predicateParams`: [`PredicateParameters!`](#predicateparameters)
 
-谓词的允许参数。
+断言的允许参数。
 
 `scriptParams`: [`ScriptParameters!`](#scriptparameters)
 
@@ -1047,7 +1047,7 @@ UTXO 的唯一 32 字节标识符。
 
 `owner`: [`Address!`](/docs/reference/scalars/#address)
 
-拥有地址或谓词根。
+拥有地址或断言根。
 
 `amount`: [`U64!`](/docs/reference/scalars/#u64)
 
@@ -1067,15 +1067,15 @@ UTXO 的唯一 32 字节标识符。
 
 `predicateGasUsed`: [`U64!`](/docs/reference/scalars/#u64)
 
-谓词交易中使用的燃气量。
+断言交易中使用的燃气量。
 
 `predicate`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-谓词字节码。
+断言字节码。
 
 `predicateData`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-谓词输入参数。
+断言输入参数。
 
 ## `InputContract`
 
@@ -1132,7 +1132,7 @@ UTXO 的唯一 32 字节标识符。
 
 `predicateGasUsed`: [`U64!`](/docs/reference/scalars/#u64)
 
-谓词交易中使用的燃气量。
+断言交易中使用的燃气量。
 
 `data`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
@@ -1140,11 +1140,11 @@ UTXO 的唯一 32 字节标识符。
 
 `predicate`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-谓词字节码。
+断言字节码。
 
 `predicateData`: [`HexString!`](/docs/reference/scalars/#hexstring)
 
-谓词输入参数。
+断言输入参数。
 
 ## `LatestGasPrice`
 
@@ -1422,7 +1422,7 @@ UTXO 的唯一 32 字节标识符。
 
 ## `PredicateParameters`
 
-谓词的共识参数。
+断言的共识参数。
 
 **字段:**
 
@@ -1432,19 +1432,19 @@ UTXO 的唯一 32 字节标识符。
 
 `maxPredicateLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-谓词的最大长度。
+断言的最大长度。
 
 `maxPredicateDataLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-谓词数据的最大长度。
+断言数据的最大长度。
 
 `maxGasPerPredicate`: [`U64!`](/docs/reference/scalars/#u64)
 
-谓词允许的最大 gas 量。
+断言允许的最大 gas 量。
 
 `maxMessageDataLength`: [`U64!`](/docs/reference/scalars/#u64)
 
-谓词的消息数据的最大长度。
+断言的消息数据的最大长度。
 
 ## `Receipt`
 
