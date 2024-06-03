@@ -9,7 +9,7 @@ title: 从 Dapp 查询
 
 ## JavaScript
 
-\```javascript
+```javascript
 export async function getHealth() {
   let response = await fetch(TESTNET_ENDPOINT, {
     method: 'POST',
@@ -22,17 +22,17 @@ export async function getHealth() {
   let data = await response.json();
   console.log('DATA:', data);
 }
-\```
+```
 
 ## Apollo Client
 
 阅读官方 Apollo Client 文档 [here](https://www.apollographql.com/apollo-client/)。
 
-\```bash
+```bash
 npm install @apollo/client graphql
-\```
+```
 
-\```javascript
+```javascript
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 const apolloClient = new ApolloClient({
@@ -52,17 +52,17 @@ export const checkHealth = async () => {
   });
   console.log('RESPONSE:', response);
 };
-\```
+```
 
 ## urql
 
 阅读官方 urql 文档 [here](https://formidable.com/open-source/urql/)。
 
-\```bash
+```bash
 npm install urql graphql
-\```
+```
 
-\```javascript
+```javascript
 import { Client, cacheExchange, fetchExchange } from 'urql';
 
 const urqlClient = new Client({
@@ -80,6 +80,6 @@ export const checkHealth = async () => {
   const response = await urqlClient.query(HEALTH_QUERY).toPromise();
   console.log('RESPONSE:', response);
 };
-\```
+```
 
 您可以在下一节中查看更多示例。
